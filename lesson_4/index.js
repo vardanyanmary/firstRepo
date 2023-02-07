@@ -24,14 +24,16 @@
 
 const btn = document.getElementById('btn')
 
-// async chi lini , tak kak ete ira grac promisey hanenq to mer codey linuma synchrone , hetevabar et sxala , chi kara async functiony veradardzni sync code
+// async chi lini , tak kak ete ira grac promisey hanenq
+// to mer codey linuma synchrone , hetevabar et sxala , 
+// chi kara async functiony veradardzni sync code
 
 function washTeeth(hasAvailableBrush) {
     // console.log("keep your teeth cleaned")
     // console.log('loading 30%')
     return new Promise((resolve, reject) => {
         if (hasAvailableBrush) {
-            resolve('cool !!')
+            resolve('keep your teeth cleaned')
         } else {
             reject('oops !!')
         }
@@ -46,7 +48,7 @@ function makeABreakfast(hasAvailableBread) {
 
     return new Promise((resolve, reject) => {
         if (hasAvailableBread) {
-            resolve('cool !!')
+            resolve('make a good breakfast')
         } else {
             reject('oops !!')
         }
