@@ -3,7 +3,7 @@ const allInputes = document.querySelectorAll('input')
 
 let user = {}
 
-const SUBMIT_KEY_FOR_LOVAL_STORAGE = 'SUBMIT_KEY_FOR_LOVAL_STORAGE'
+const SUBMIT_KEY_FOR_LOCAL_STORAGE = 'SUBMIT_KEY_FOR_LOCAL_STORAGE'
 
 const changeBody = (e) => {
     body = { ...user, [e.target.name]: e.target.value }
@@ -17,7 +17,7 @@ form.addEventListener('submit',(e) => {
 
     e.preventDefault();
     
-    localStorage.setItem(SUBMIT_KEY_FOR_LOVAL_STORAGE, JSON.stringify(user))
+    localStorage.setItem(SUBMIT_KEY_FOR_LOCAL_STORAGE, JSON.stringify(user))
 
 })
     // try {
