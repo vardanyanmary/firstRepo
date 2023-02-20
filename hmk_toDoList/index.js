@@ -28,12 +28,12 @@ class ToDoList {
   
 /* ---------------------- Local Storage ----------------------
 
-getTodoFromLocalstorage: function (key) {
-    var todoList = JSON.parse(localStorage.getItem(key));
+getTodoFromLocalstorage(key) {
+    const todoList = JSON.parse(localStorage.getItem(key));
     return todoList;
   }
 
-setTodoLocalstorage: function (key) {
+setTodoLocalstorage(key) {
     localStorage.setItem('todoList', JSON.stringify(key));
 }
 
