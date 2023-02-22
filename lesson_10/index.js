@@ -4,10 +4,8 @@ const LOCAL_STORAGE_QUOTES_KEY = 'quotes'
 const api_url = "https://api.kanye.rest";
 
 class AuthorsQuotes {
-
     constructor() {
-        this.quotes = JSON.parse(localStorage.getItem(LOCAL_STORAGE_QUOTES_KEY))
-            || []
+        this.quotes = JSON.parse(localStorage.getItem(LOCAL_STORAGE_QUOTES_KEY)) || []
     }
 
     addQuotes(newQuotes) {
@@ -15,37 +13,30 @@ class AuthorsQuotes {
         this.quotes.push(newQuotes)
     }
 
-    renderQuotes() {
+    renderQuotes(_quote) {
         console.log(" Render Quotes ");
         localStorage.setItem(LOCAL_STORAGE_QUOTES_KEY, JSON.stringify(this.quotes))
-
         const quotesList = document.querySelector('#quotesList')
         console.log(this.quotes, 'render');
-
-        (this.quotes).forEach( quote => {
-
+        
+        (this.quotes).forEach(quote => {
             const quotesLi = document.createElement('li');
             const span = document.createElement('span');
-            
             span.innerHTML = quote;
-            
-            const button = document.createElement('button')
-            
-            button.addEventListener('click', () => {
-                this.deleteQuote(btn)
-            })
-            button.innerText = ('Delete')
-            console.log('foreach');
 
-            // quotesLi.appendChild(button)
+            const button = document.createElement('button')
+            button.addEventListener('click', () => { this.deleteQuotes(btn) })
+            button.innerText = ('Delete')
+
             quotesLi.appendChild(span);
             quotesLi.appendChild(button)
             quotesList.appendChild(quotesLi);
 
+            console.log('foreach');
         });
     }
 
-    deleteQuote(){
+    deleteQuotes() {
 
     }
 }
@@ -57,7 +48,6 @@ async function quotesFunc() {
         console.log(data)
 
         const quotes = new AuthorsQuotes()
-
         quotes.addQuotes(data)
         quotes.renderQuotes(data)
 
