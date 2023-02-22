@@ -1,10 +1,10 @@
 const btn = document.getElementById('btn')
 
 const LOCAL_STORAGE_QUOTES_KEY = 'quotes'
-
 const api_url = "https://api.kanye.rest";
 
 class AuthorsQuotes {
+
     constructor() {
         this.quotes = JSON.parse(localStorage.getItem(LOCAL_STORAGE_QUOTES_KEY))
             || []
@@ -15,40 +15,72 @@ class AuthorsQuotes {
         localStorage.setItem(LOCAL_STORAGE_QUOTES_KEY, JSON.stringify(this.quotes))
     }
 
-
     renderQuotes(data) {
-        const quotesList = document.querySelector('#quotesList')
         localStorage.setItem(LOCAL_STORAGE_QUOTES_KEY, JSON.stringify(this.quotes))
+        const quotesList = document.querySelector('#quotesList')
+            (data ? data : this.quotes).forEach(({ id, quotes }) => {
 
-        (data ? data : this.quotes).forEach(({ id , quotes}) => {
-            
-            const quotesLi = document.createElement('li');
-            quotesList.setAttribute('id', id)
-            const newSpan = document.createElement('span')
-            newSpan.innerHTML = quotes
+                const quotesLi = document.createElement('li')
+                const span = document.createElement('span')
 
-            const btn = document.createElement('button')
-            btn.setAttribute('id', id)
+                quotesLi.setAttribute('id', id)
+                span.innerHTML = quotes
 
-            btn.addEventListener('click', () => {
-                this.deleteToDoList(btn)
+                const button = document.createElement('button')
+                button.setAttribute('id', id)
+
+                button.addEventListener('click', () => {
+                    // this.deleteToDoList(btn)
+                })
+                button.innerText = ('Delete')
+
+                quotesLi.appendChild(span)
+                quotesLi.appendChild(button)
+                quotesList.appendChild(quotesLi)
+                
             })
-            btn.innerText = ('Delete')
-
-            quotesLi.appendChild(newSpan)
-            quotesLi.appendChild(btn)
-            quotesList.appendChild(quotesLi)
-        })
     }
 }
+    /* ////////////////////////////////////////////////
+        renderQuotes(data) {
 
+        let quotes = addQuotes()
+        let html = '';
+        localStorage.setItem(LOCAL_STORAGE_QUOTES_KEY, JSON.stringify(this.quotes))
+        const quotesList = document.querySelector('#quotesList')
 
- async function quotesFunc() {
+        quotes.forEach( quote => {
+
+                const quotesLi = document.createElement('li');
+                const span = document.createElement('span');
+                span.innerHTML = quote;
+                const button = document.createElement('button');
+                button.setAttribute('id', id);
+
+                button.addEventListener('click', () => {
+                     // this.deleteToDoList(btn)
+                 });
+                button.innerText = ('Delete');
+
+                quotesLi.appendChild(span);
+                quotesLi.appendChild(button);
+                quotesList.appendChild(quotesLi);
+
+                html.appendChild(quotesList) 
+            })
+
+            let container = document.querySelector('.container')
+            container.innerHTML = html;
+    }
+}
+*/
+
+async function quotesFunc() {
     try {
         const response = await fetch(api_url)
         const data = await response.json()
         console.log(data)
-        
+
         const quotes = new AuthorsQuotes()
 
         quotes.addQuotes(data)
@@ -59,6 +91,4 @@ class AuthorsQuotes {
     }
 }
 
-
 btn.addEventListener('click', quotesFunc)
-
