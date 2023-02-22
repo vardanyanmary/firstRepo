@@ -12,85 +12,43 @@ class AuthorsQuotes {
 
     addQuotes(newQuotes) {
         localStorage.setItem(LOCAL_STORAGE_QUOTES_KEY, JSON.stringify(this.quotes))
-        this.quotes.push(newQuotes)   
+        this.quotes.push(newQuotes)
     }
 
-    renderQuotes(data) {
+    renderQuotes() {
         console.log(" Render Quotes ");
         localStorage.setItem(LOCAL_STORAGE_QUOTES_KEY, JSON.stringify(this.quotes))
-        
+
         const quotesList = document.querySelector('#quotesList')
         console.log(this.quotes, 'render');
 
-        (data ? data : this.quotes).forEach(quote => {
-                const quotesLi = document.createElement('li')
-                const span = document.createElement('span')
+        (this.quotes).forEach( quote => {
 
-                span.innerHTML = quote
+            const quotesLi = document.createElement('li');
+            const span = document.createElement('span');
+            
+            span.innerHTML = quote;
+            
+            const button = document.createElement('button')
+            
+            button.addEventListener('click', () => {
+                this.deleteQuote(btn)
+            })
+            button.innerText = ('Delete')
+            console.log('foreach');
 
-
-                // quotesLi.appendChild(button)
-                quotesLi.appendChild(span)
-                quotesList.appendChild(quotesLi)
+            // quotesLi.appendChild(button)
+            quotesLi.appendChild(span);
+            quotesLi.appendChild(button)
+            quotesList.appendChild(quotesLi);
 
         });
+    }
 
-        //     (data ? data : this.quotes).forEach(({ id, quotes }) => {
+    deleteQuote(){
 
-        //         const quotesLi = document.createElement('li')
-        //         const span = document.createElement('span')
-
-        //         quotesLi.setAttribute('id', id)
-        //         span.innerHTML = quotes
-
-        //         const button = document.createElement('button')
-        //         button.setAttribute('id', id)
-
-        //         button.addEventListener('click', () => {
-        //             // this.deleteToDoList(btn)
-        //         })
-        //         button.innerText = ('Delete')
-
-        //         quotesLi.appendChild(span)
-        //         quotesLi.appendChild(button)
-        //         quotesList.appendChild(quotesLi)
-                
-        //     })
     }
 }
-    /* ////////////////////////////////////////////////
-        renderQuotes(data) {
-
-        let quotes = addQuotes()
-        let html = '';
-        localStorage.setItem(LOCAL_STORAGE_QUOTES_KEY, JSON.stringify(this.quotes))
-        const quotesList = document.querySelector('#quotesList')
-
-        quotes.forEach( quote => {
-
-                const quotesLi = document.createElement('li');
-                const span = document.createElement('span');
-                span.innerHTML = quote;
-                const button = document.createElement('button');
-                button.setAttribute('id', id);
-
-                button.addEventListener('click', () => {
-                     // this.deleteToDoList(btn)
-                 });
-                button.innerText = ('Delete');
-
-                quotesLi.appendChild(span);
-                quotesLi.appendChild(button);
-                quotesList.appendChild(quotesLi);
-
-                html.appendChild(quotesList) 
-            })
-
-            let container = document.querySelector('.container')
-            container.innerHTML = html;
-    }
-}
-*/
 
 async function quotesFunc() {
     try {
