@@ -21,10 +21,12 @@ class AuthorsQuotes {
         
         (this.quotes).forEach(quote => {
             const quotesLi = document.createElement('li');
+            quotesLi.setAttribute('id', "list-group-item")
             const span = document.createElement('span');
             span.innerHTML = quote;
 
             const button = document.createElement('button')
+            button.setAttribute('id', 'deleteBtn')
             button.addEventListener('click', () => { this.deleteQuotes(btn) })
             button.innerText = ('Delete')
 
