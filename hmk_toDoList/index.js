@@ -1,14 +1,21 @@
 const taskList = document.querySelector('#tasksList')
 
+const LOCAL_STORAGE_TASKS_KEY = 'tasks'
+
 class ToDoList {
-    constructor(){
-        this.tasksToDo = []
+    constructor() {
+        this.tasksToDo = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TASKS_KEY))
+            || []
+
+            if (this.tasksToDo.length) {
+                this.renderTask(this.tasksToDo)
+            }
     }
 
-    addTodoTask(){
+    addTodoTask() {
         if (taskInput.value == '') {
             alert(' Enter Something !!! ')
-        }  else {
+        } else {
             const taskInput = document.querySelector('#taskInput')
             console.dir(taskInput, 'taskInput');
             const taskText = taskInput.value
@@ -18,42 +25,24 @@ class ToDoList {
                 text: taskText,
                 // isCompleted: false
             }
-            
-            this.tasksToDo.push(newTask)
 
+            this.tasksToDo.push(newTask)
+            localStorage.setItem(LOCAL_STORAGE_TASKS_KEY, JSON.stringify(this.tasksToDo))
             // console.log(tasksToDo);
-            taskInput.value = '' 
+            taskInput.value = ''
         }
     }
-  
-/* ---------------------- Local Storage ----------------------
 
-getTodoFromLocalstorage(key) {
-    const todoList = JSON.parse(localStorage.getItem(key));
-    return todoList;
-  }
-
-setTodoLocalstorage(key) {
-    localStorage.setItem('todoList', JSON.stringify(key));
-}
-
- addNewTodo(todo, list) {
-    list.push(todo);
-    todoController.setTodoLocalstorage(list);
-    return todo;
-  }
-*/
-
-    deleteToDoList() {        
-        // const currentElementId = Number(btn.id)
-        // const newData = this.tasksToDo.filter(({ id }) => {
-        //     // console.log(id);
-        //     return id !== currentElementId
-        // })
-        // // console.log(newData, 'newData');
-        // this.addTodoTask = newData
-        // this.renderTask(newData)
-    }  
+    deleteToDoList() {
+        const currentElementId = Number(btn.id)
+        const newData = this.tasksToDo.filter(({ id }) => {
+            // console.log(id);
+            return id !== currentElementId
+        })
+        // console.log(newData, 'newData');
+        this.addTodoTask = newData
+        this.renderTask(newData)
+    }
 
     renderTask(data) {
         const tasksList = document.querySelector('#tasksList')
@@ -94,26 +83,3 @@ button.addEventListener('click', () => {
     todoList.renderTask()
     todoList.deleteToDoList()
 })
-
-// const form = document.querySelector('form')
-// const allInputes = document.querySelectorAll('input')
-
-// let user = {}
-
-// const SUBMIT_KEY_FOR_LOCAL_STORAGE = 'SUBMIT_KEY_FOR_LOCAL_STORAGE'
-
-// const changeBody = (e) => {
-//     body = { ...user, [e.target.name]: e.target.value }
-// }
-
-// allInputes.forEach((input) => {
-//     input.addEventListener('change', changeBody)
-// })
-
-// form.addEventListener('submit',(e) => {
-
-//     e.preventDefault();
-    
-//     localStorage.setItem(SUBMIT_KEY_FOR_LOCAL_STORAGE, JSON.stringify(user))
-
-// })
