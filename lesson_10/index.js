@@ -16,13 +16,12 @@ class AuthorsQuotes {
     }
 
 
-    renderTask(data) {
+    renderQuotes(data) {
         const quotesList = document.querySelector('#quotesList')
+        localStorage.setItem(LOCAL_STORAGE_QUOTES_KEY, JSON.stringify(this.quotes))
 
-        (data ? data : this.quotes).forEach(({ id, quotes}) => {
+        (data ? data : this.quotes).forEach(({ id , quotes}) => {
             
-            localStorage.setItem(LOCAL_STORAGE_QUOTES_KEY, JSON.stringify(this.quotes))
-
             const quotesLi = document.createElement('li');
             quotesList.setAttribute('id', id)
             const newSpan = document.createElement('span')
@@ -39,10 +38,8 @@ class AuthorsQuotes {
             quotesLi.appendChild(newSpan)
             quotesLi.appendChild(btn)
             quotesList.appendChild(quotesLi)
-
         })
     }
-
 }
 
 
