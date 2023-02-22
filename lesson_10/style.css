@@ -6,7 +6,7 @@ body {
 #title {
     text-align: center;
     padding-top: 10px;
-    color: #ffe8e8;
+    color: #fff;
     text-shadow: 0 0 5px #cd5c5c;
 }
 #btn {
@@ -22,6 +22,9 @@ body {
 #btn:hover {
   background-color: #ffd7d7;
   color: #cd5c5c;
+}
+ul {
+  padding: 0;
 }
 #list-group-item {
   display: flex;
@@ -42,9 +45,6 @@ span {
   display: flex;
   justify-content: center;
 }
-ul {
-  padding: 0;
-}
 #deleteBtn {
   background-color: #ffbebe;
   color: #af5252;
@@ -54,6 +54,6 @@ ul {
   border: none;
 }
 #deleteBtn:hover {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #fff;
+  color: #000;
 }

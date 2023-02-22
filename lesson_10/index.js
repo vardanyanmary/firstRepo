@@ -39,7 +39,7 @@ class AuthorsQuotes {
     }
 
     deleteQuotes() {
-
+        
     }
 }
 
