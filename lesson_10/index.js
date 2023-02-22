@@ -13,7 +13,7 @@ class AuthorsQuotes {
         this.quotes.push(newQuotes)
     }
 
-    renderQuotes(_quote) {
+    renderQuotes() {
         console.log(" Render Quotes ");
         localStorage.setItem(LOCAL_STORAGE_QUOTES_KEY, JSON.stringify(this.quotes))
         const quotesList = document.querySelector('#quotesList')
@@ -29,17 +29,21 @@ class AuthorsQuotes {
             button.setAttribute('id', 'deleteBtn')
             button.addEventListener('click', () => { this.deleteQuotes(btn) })
             button.innerText = ('Delete')
-
-            quotesLi.appendChild(span);
-            quotesLi.appendChild(button)
-            quotesList.appendChild(quotesLi);
-
             console.log('foreach');
+
+            quotesLi.appendChild(span)
+            quotesLi.appendChild(button)
+            quotesList.appendChild(quotesLi)
+            
         });
     }
 
     deleteQuotes() {
-        
+        localStorage.setItem(LOCAL_STORAGE_QUOTES_KEY, JSON.stringify(this.quotes))
+        // const newData = this.quotes.filter((id) => id !== this.quotes.length + 1,)
+        // console.log(newData);
+        // this.addQuotes = newData
+        // this.renderQuotes(newData)
     }
 }
 
@@ -47,12 +51,12 @@ async function quotesFunc() {
     try {
         const response = await fetch(api_url)
         const data = await response.json()
-        console.log(data)
+        console.log( data , 'data' )
 
         const quotes = new AuthorsQuotes()
-        quotes.addQuotes(data)
-        quotes.renderQuotes(data)
-
+        quotes.addQuotes( data )
+        quotes.renderQuotes( data )
+        quotes.deleteQuotes( data )
     } catch {
         (err) => { console.error(err); }
     }
