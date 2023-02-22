@@ -20,10 +20,11 @@ class AuthorsQuotes {
         console.log(this.quotes, 'render');
 
         (this.quotes).forEach( quote => {
-            const quotesLi = document.createElement('li');
+            const quotesLi = document.createElement('li')
             quotesLi.setAttribute('id', "list-group-item")
-            const span = document.createElement('span');
-            span.innerHTML = JSON.stringify(quote);
+            const span = document.createElement('span')
+            const quoteStringify = JSON.stringify(quote)
+            span.innerHTML = quoteStringify
 
             const button = document.createElement('button')
             button.setAttribute('id', 'deleteBtn')
