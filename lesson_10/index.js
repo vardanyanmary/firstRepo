@@ -1,48 +1,67 @@
 const btn = document.getElementById('btn')
+
 const LOCAL_STORAGE_QUOTES_KEY = 'quotes'
 
 const api_url = "https://api.kanye.rest";
 
-btn.addEventListener('click', async (e) => {
+class AuthorsQuotes {
+    constructor() {
+        this.quotes = JSON.parse(localStorage.getItem(LOCAL_STORAGE_QUOTES_KEY))
+            || []
+    }
+
+    addQuotes(newQuotes) {
+        this.quotes.push(newQuotes)
+        localStorage.setItem(LOCAL_STORAGE_QUOTES_KEY, JSON.stringify(this.quotes))
+    }
+
+
+    renderTask(data) {
+        const quotesList = document.querySelector('#quotesList')
+
+        (data ? data : this.quotes).forEach(({ id, quotes}) => {
+            
+            localStorage.setItem(LOCAL_STORAGE_QUOTES_KEY, JSON.stringify(this.quotes))
+
+            const quotesLi = document.createElement('li');
+            quotesList.setAttribute('id', id)
+            const newSpan = document.createElement('span')
+            newSpan.innerHTML = quotes
+
+            const btn = document.createElement('button')
+            btn.setAttribute('id', id)
+
+            btn.addEventListener('click', () => {
+                this.deleteToDoList(btn)
+            })
+            btn.innerText = ('Delete')
+
+            quotesLi.appendChild(newSpan)
+            quotesLi.appendChild(btn)
+            quotesList.appendChild(quotesLi)
+
+        })
+    }
+
+}
+
+
+ async function quotesFunc() {
     try {
         const response = await fetch(api_url)
         const data = await response.json()
         console.log(data)
-
-        class AuthorsQuotes {
-            constructor() {
-                this.quotes = JSON.parse(localStorage.getItem(LOCAL_STORAGE_QUOTES_KEY))
-                    || []
-            }
-
-            addTodoTask(newQuotes) {
-                    this.quotes.push(newQuotes)
-                    localStorage.setItem(LOCAL_STORAGE_QUOTES_KEY, JSON.stringify(this.quotes))
-                }
-            }
-
-            // renderTask(data) {
-            //     const quotes = document.querySelector('#tasksList')
-            //         // console.log(this.authors, 'render');
-            //         (data ? data : this.authors).forEach(({ id, text }) => {
-
-            //             const tasks = document.createElement('li');
-            //             tasks.setAttribute('id', id)
-            //             const newSpan = document.createElement('span')
-            //             newSpan.innerHTML = text
-
-            //             quotes.appendChild(tasks)
-            //         })
-            // }
-
+        
         const quotes = new AuthorsQuotes()
 
-        quotes.addTodoTask()
-        quotes.renderTask()
+        quotes.addQuotes(data)
+        quotes.renderQuotes(data)
 
     } catch {
         (err) => { console.error(err); }
     }
-})
+}
 
-// classy  hanel listeneri callbacki mejic , classic instance hanel , clickic heto gnal request anel u response-y stanal , .json popoxakany kanchel , mer class addToDo kanchel .json argumentum , rendera petq anel 
+
+btn.addEventListener('click', quotesFunc)
+
