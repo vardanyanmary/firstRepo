@@ -11,34 +11,51 @@ class AuthorsQuotes {
     }
 
     addQuotes(newQuotes) {
-        this.quotes.push(newQuotes)
         localStorage.setItem(LOCAL_STORAGE_QUOTES_KEY, JSON.stringify(this.quotes))
+        this.quotes.push(newQuotes)   
     }
 
     renderQuotes(data) {
+        console.log(" Render Quotes ");
         localStorage.setItem(LOCAL_STORAGE_QUOTES_KEY, JSON.stringify(this.quotes))
+        
         const quotesList = document.querySelector('#quotesList')
-            (data ? data : this.quotes).forEach(({ id, quotes }) => {
+        console.log(this.quotes, 'render');
 
+        (data ? data : this.quotes).forEach(quote => {
                 const quotesLi = document.createElement('li')
                 const span = document.createElement('span')
 
-                quotesLi.setAttribute('id', id)
-                span.innerHTML = quotes
+                span.innerHTML = quote
 
-                const button = document.createElement('button')
-                button.setAttribute('id', id)
 
-                button.addEventListener('click', () => {
-                    // this.deleteToDoList(btn)
-                })
-                button.innerText = ('Delete')
-
+                // quotesLi.appendChild(button)
                 quotesLi.appendChild(span)
-                quotesLi.appendChild(button)
                 quotesList.appendChild(quotesLi)
+
+        });
+
+        //     (data ? data : this.quotes).forEach(({ id, quotes }) => {
+
+        //         const quotesLi = document.createElement('li')
+        //         const span = document.createElement('span')
+
+        //         quotesLi.setAttribute('id', id)
+        //         span.innerHTML = quotes
+
+        //         const button = document.createElement('button')
+        //         button.setAttribute('id', id)
+
+        //         button.addEventListener('click', () => {
+        //             // this.deleteToDoList(btn)
+        //         })
+        //         button.innerText = ('Delete')
+
+        //         quotesLi.appendChild(span)
+        //         quotesLi.appendChild(button)
+        //         quotesList.appendChild(quotesLi)
                 
-            })
+        //     })
     }
 }
     /* ////////////////////////////////////////////////
