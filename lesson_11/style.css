@@ -1,0 +1,15 @@
+#getAllPost{
+    width: 30%;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    border-radius: 3px;
+    color: #e4ecff;
+    background-color: #3e69ce;
+    cursor: pointer;
+  }
+
+  #getAllPost:hover {
+    background-color: #e4ecff;
+    color: #3e69ce;
+  }
