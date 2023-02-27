@@ -15,7 +15,7 @@ class ToDoList {
     addTodoTask() {
         if (taskInput.value == '') {
             alert(' Enter Something !!! ')
-        } else {
+        } else { 
             const taskInput = document.querySelector('#taskInput')
             console.dir(taskInput, 'taskInput');
             const taskText = taskInput.value
