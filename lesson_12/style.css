@@ -1,0 +1,90 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+label {
+  display: flex;
+  margin-bottom: 15px;
+  flex-direction: column;
+}
+
+#getUsersBtn {
+  width: 35%;
+  height: 35px;
+  font-size: 16px;
+  border: none;
+  border-radius: 3px;
+  color: #e4ecff;
+  background-color: #3e69ce;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+#getUsersBtn:hover {
+  background-color: #e4ecff;
+  color: #3e69ce;
+}
+
+#createUser {
+  width: 100%;
+  height: 35px;
+  font-size: 15px;
+  border: none;
+  border-radius: 3px;
+  color: #e4ecff;
+  background-color: #5680e4;
+  cursor: pointer;
+}
+
+#createUser:hover {
+  background-color: #e4ecff;
+  color: #5680e4;
+}
+
+#usersDiv {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  padding: 5px;
+  border: 1px solid #3e69ce;
+  border-radius: 5px;
+  margin: 15px auto;
+}
+
+#usersNameP {
+  margin: 7px;
+  font-size: 15px;
+  color: #0a39a7;
+}
+
+#deleteBtn {
+  padding: 0 15px;
+  margin-left: 15px;
+  background-color: #5856ee;
+  color: #c4d7ff;
+  padding: 7px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+}
+#deleteBtn:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.labelElems {
+  margin: 0;
+  font-size: 18px;
+  color: #0a39a7;
+  text-shadow: 1px 1px 1px rgb(255, 255, 255), 0 0 1em rgb(65, 65, 251), 0 0 0.1em rgb(73, 73, 255);
+}
+
+input {
+  height: 30px;
+  font-size: 15px;
+  border: 1px solid #0a39a7;
+  border-radius: 3px;
+}

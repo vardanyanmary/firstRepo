@@ -7,9 +7,9 @@ class ToDoList {
         this.tasksToDo = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TASKS_KEY))
             || []
 
-            if (this.tasksToDo.length) {
-                this.renderTask(this.tasksToDo)
-            }
+        if (this.tasksToDo.length) {
+            this.renderTask(this.tasksToDo)
+        }
     }
 
     addTodoTask() {
@@ -28,12 +28,16 @@ class ToDoList {
 
             this.tasksToDo.push(newTask)
             localStorage.setItem(LOCAL_STORAGE_TASKS_KEY, JSON.stringify(this.tasksToDo))
+            this.addTodoTask(tasksToDo)
+
             // console.log(tasksToDo);
             taskInput.value = ''
+
         }
     }
 
     deleteToDoList() {
+        const btn = document.createElement('button')
         const currentElementId = Number(btn.id)
         const newData = this.tasksToDo.filter(({ id }) => {
             // console.log(id);
@@ -69,7 +73,6 @@ class ToDoList {
 
             tasks.appendChild(newSpan)
             tasks.appendChild(btn)
-            // console.log(tasks);
             tasksList.appendChild(tasks)
 
         })

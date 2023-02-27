@@ -1,3 +1,12 @@
+const BASE_URL = 'https://jsonplaceholder.typicode.com'
+const post = '/posts'
+
+const api = axios.create({
+    baseURL: BASE_URL
+})
+
+api.get(post)
+
 const getAllPostBtn = document.querySelector('#getAllPost')
 
 const postURL = 'https://jsonplaceholder.typicode.com/posts'
@@ -13,16 +22,14 @@ const postBody = ({
     userId: 1,
 })
 
-const postConfig = {
-    body: JSON.stringify(postBody),
-    headers: postHeaders
-}
+
 
 async function getPost() {
     try {
-        // const res = await axios.post(postURL, postBody, postHeaders) ;
-        const { data } = await axios.get(postURL, postBody, postHeaders)
-        console.log(data)
+        const {data: res} = await api.post(postURL, postBody,{ 
+            headers: postHeaders }) ;
+        // const res = await axios.get(postURL, postBody, postHeaders)
+        console.log(res)
     } catch (error) {
         console.log(error)
     }
@@ -32,11 +39,12 @@ getAllPostBtn.addEventListener('click', getPost)
 
 //--------------------------------------------------
 
-
-
 // const BASE_URL = 'https://jsonplaceholder.typicode.com'
 // const post = '/posts'
 
 // const api = axios.create({
 //     baseURL: BASE_URL
 // })
+
+// api.get(post)
+
