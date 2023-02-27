@@ -21,9 +21,7 @@ const postBody = ({
     body: 'bar',
     userId: 1,
 })
-
-
-
+ 
 async function getPost() {
     try {
         const {data: res} = await api.post(postURL, postBody,{ 
