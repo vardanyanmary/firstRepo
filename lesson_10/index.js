@@ -25,7 +25,7 @@ class AuthorsQuotes {
             quotesLi.setAttribute('id', "list-group-item")
             const span = document.createElement('span')
             span.innerHTML = quote
-
+ 
             const button = document.createElement('button')
 
             button.setAttribute('id', 'deleteBtn')
