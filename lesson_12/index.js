@@ -34,35 +34,37 @@ class UserService {
                 password: passwordInput.value
 
             })
+            const newUser = { ...sendData.data, id: Math.floor(Math.random() * 10000) }
             // console.log(sendData);
-            this.users.push(sendData.data.userName)
-            this.renderItem(sendData.data.userName)
+            this.users.push(newUser)
+            this.renderItem(newUser)
 
         } catch (error) {
             console.log(error);
         }
     }
 
-    renderItem(username) {
-
+    renderItem(user) {
+        console.log('user', user);
         const usersDiv = document.createElement('div')
         usersDiv.setAttribute('id', 'usersDiv')
 
-        const usersName = document.createElement('p')
-        usersName.setAttribute('id', 'usersNameP')
+        const usersName2 = document.createElement('p')
+        usersName2.setAttribute('id', 'usersNameP')
 
         const btn = document.createElement('button')
         btn.setAttribute('id', 'deleteBtn')
 
-        usersName.innerHTML = username
+        usersName2.innerHTML = user.userName
 
         usersContainer.appendChild(usersDiv)
-        usersDiv.appendChild(usersName)
+        usersDiv.appendChild(usersName2)
         usersDiv.appendChild(btn)
 
         btn.innerText = 'Delete'
+        console.log(user, 'renderItem');
         btn.addEventListener('click', () => { this.deleteUser(user.id) })
-       
+
     }
 
     renderUser() { // for appendChild
@@ -80,13 +82,14 @@ class UserService {
             const btn = document.createElement('button')
             btn.setAttribute('id', 'deleteBtn')
 
-            usersName.innerHTML = user.name
+            usersName.innerHTML = user.userName
 
             usersContainer.appendChild(usersDiv)
             usersDiv.appendChild(usersName)
             usersDiv.appendChild(btn)
 
             btn.innerText = 'Delete'
+            // console.log(user,'user');
             btn.addEventListener('click', () => { this.deleteUser(user.id) })
 
         });
@@ -94,9 +97,11 @@ class UserService {
     }
 
     deleteUser(userId) {
+        console.log(userId);
         const deleteData = this.users.filter((user) => {
             return userId !== user.id;
         })
+        console.log(deleteData,'deleted data');
         this.users = deleteData
         this.renderUser()
     }
